@@ -1,0 +1,1 @@
+Orphan pages are website pages that cannot be accessed from any other page on the same site because they lack incoming internal links. This isolation makes them difficult for both users and search engines to find, hindering search engine indexing and potentially leading to lost organic traffic. 
