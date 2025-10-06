@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-class Zachetka {
+class Zachetka
+{
     private String fio;
     private int kurs;
     private String group;
@@ -41,18 +42,26 @@ class Zachetka {
                 }
             }
         }
-    public void print(PrintWriter pw) {
-        for (int i = 0; i < sessions.size(); i++) {
-        Session ses = sessions.get(i);
-        for (int j = 0; j < ses.getExams().size(); j++) {
-            Session.Exam ex = ses.getExams().get(j);
-            pw.println(this.getFio() + "; " +
-                            this.getKurs() + " курс; " +
-                            this.getGroup() + " группа; " +
-                            "Сессия " + ses.getNumber() + "; " +
-                            ex.getSubject() + "; " +
-                            ex.getGrade());
-        }}}
+   public void print(PrintWriter pw) {
+       pw.println(this.getFio() + "; " +
+               this.getKurs() + " курс; " +
+               this.getGroup() + " группа; ");
+       for (int i = 0; i < sessions.size(); i++) {
+           Session ses = sessions.get(i);
+           pw.println("Сессия " + ses.getNumber());
+           for (int j = 0; j < ses.getExams().size(); j++) {
+               Session.Exam ex = ses.getExams().get(j);
+               pw.println(ex.getSubject() + " " +
+                       ex.getGrade())
+               ;
+           }
+           pw.println("Средний балл в текущей сессии: "+ses.get_average_score()+
+                   ";")
+           ;
+       }
+       pw.println("Средний балл за все сессии: "+ this.get_av_sc_All())
+       ;
+   }
     public void addSession(int number)
     {
         sessions.add(new Session(number));
@@ -83,6 +92,13 @@ class Zachetka {
         }
         return true;
     }
+
+    public double get_av_sc_All()
+    {double res=0;
+     for (int i=0; i< sessions.size(); i++)
+     {res+=sessions.get(i).get_average_score(); }
+     return res/sessions.size();
+    }
     class Session {
         private int number; // номер сессии
         private List<Exam> exams = new ArrayList<>();
@@ -106,6 +122,12 @@ class Zachetka {
         public List<Exam> getExams()
         {
             return exams;
+        }
+        public double get_average_score()
+        { double res=0;
+            for (int i=0; i< exams.size(); i++)
+            {res+=exams.get(i).grade;}
+            return res/exams.size();
         }
         public boolean is_all_good() {
             for (int i = 0; i < exams.size(); i++) {
@@ -172,6 +194,19 @@ public class Main {
             sc.close();
 
             PrintWriter pw = new PrintWriter(new FileWriter("output.txt"));
+            pw.println("Отличники");
+            for (int i = 0; i < students.size(); i++) {
+                if (students.get(i).isOtlichnik()) {
+                    students.get(i).print(pw);
+                }
+            }
+            pw.println("Сортировка по убыванию среднего балла");
+            Collections.sort(students, new MaxAvScore());
+            for (int i = 0; i < students.size(); i++) {
+                    students.get(i).print(pw);
+            }
+            pw.println("Сортировка по возрастанию среднего балла");
+            Collections.sort(students, new MinAvScore());
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).isOtlichnik()) {
                     students.get(i).print(pw);
