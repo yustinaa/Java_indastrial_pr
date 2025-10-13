@@ -1,0 +1,7 @@
+3
+101 Ivanov 1 4.5
+102 Petrov 1 3.9
+103 Sidorov 2 4.8
+2
+102 Petrov 1 3.9
+104 Smirnov 3 4.0
