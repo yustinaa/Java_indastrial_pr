@@ -1,0 +1,9 @@
+Minsk, Hotel 1, 3
+Grodno, Hotel 2, 4
+Minsk, Hotel 2_1, 4
+Mogilev, Hotel Star, 2
+Minsk, Presideskiy 43, 4
+Brest, Rodnoy, 4
+Brest, Byg, 3
+Brest, Otel 543, 4
+Zavslavl, Lychshii, 5
