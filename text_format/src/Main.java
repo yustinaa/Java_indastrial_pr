@@ -18,12 +18,24 @@ class MyFile
         String text = "";
         BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(inputF), "UTF-8"));
         String line;
+        boolean newParagraph = false;
+
         while ((line = r.readLine()) != null) {
-            text += line + " ";
+            if (line.startsWith(" ") || line.startsWith("\t")) {
+                text += "\n\n" + line.trim(); //новый абзац
+                newParagraph = true;
+            } else {
+                if (!newParagraph && !text.isEmpty())
+                    text += " ";
+                text += line.trim();
+                newParagraph = false;
+            }
         }
+
         r.close();
         return text.trim();
     }
+
 
     public void writeText(List<String> lines) throws IOException {
         PrintWriter out = new PrintWriter(outputF, "UTF-8");
@@ -34,28 +46,54 @@ class MyFile
     }
 
     public List<String> text_to_width(String text, int width) {
-        String[] words = text.split("\\s+");
+        // Разбиваем весь текст на абзацы (по двойным переводам строк)
+        String[] paragraphs = text.split("\\n\\n+");
         List<String> result = new ArrayList<>();
 
-        List<String> lineWords = new ArrayList<>();
-        int currentLength = 0;
+        for (String paragraph : paragraphs) {
+            paragraph = paragraph.trim();
+            String[] words = paragraph.split("\\s+");
+            List<String> lineWords = new ArrayList<>();
+            int currentLength = 0;
+            boolean firstLine = true;
 
-        for (String word : words) {
-            if (currentLength + word.length() + lineWords.size() > width) {
-                result.add(line_to_width(lineWords, width));
-                lineWords.clear();
-                currentLength = 0;
+            for (String word : words) {
+                int availableWidth = width;
+                if (firstLine) {
+                    availableWidth -= 4;
+                }
+                if (currentLength + word.length() + lineWords.size() > availableWidth) {
+                    String line = line_to_width(lineWords, availableWidth);
+
+                    if (firstLine) {
+                        result.add("    " + line); // добавляем красную строку
+                        firstLine = false;
+                    } else {
+                        result.add(line);
+                    }
+
+                    lineWords.clear();
+                    currentLength = 0;
+                }
+
+                lineWords.add(word);
+                currentLength += word.length();
             }
-            lineWords.add(word);
-            currentLength += word.length();
-        }
+            // добавляем последнюю строку абзаца
+            if (!lineWords.isEmpty()) {
+                String lastLine = String.join(" ", lineWords);
+                if (firstLine) {
+                    result.add("    " + lastLine);
 
-        if (!lineWords.isEmpty()) {
-            result.add(String.join(" ", lineWords)); // последняя строка без выравнивания
+                } else {
+                    result.add(lastLine);
+                }
+            }
         }
 
         return result;
     }
+
 
     private String line_to_width(List<String> words, int width) {
         if (words.size() == 1)
@@ -74,7 +112,10 @@ class MyFile
         for (int i = 0; i < words.size(); i++) {
             line += words.get(i);
             if (i < gaps) {
-                int count = evenSpace + (i < extraSpace ? 1 : 0);
+                int count = evenSpace;
+                if (i < extraSpace) {
+                    count += 1;
+                }
                 for (int j = 0; j < count; j++) line += " ";
             }
         }
