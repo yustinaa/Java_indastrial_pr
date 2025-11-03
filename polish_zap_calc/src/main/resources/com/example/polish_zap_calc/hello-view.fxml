@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="446.0" prefWidth="513.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.polish_zap_calc.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="23.0" prefWidth="243.0" text="Enter your expression" textAlignment="JUSTIFY" textFill="#7c0791">
+      <font>
+         <Font name="Consolas Bold" size="20.0" />
+      </font></Label>
+   <TextField fx:id="input" prefHeight="35.0" prefWidth="455.0" />
+   <Label prefHeight="22.0" prefWidth="122.0" text="Polish zapis" textFill="#7c0791">
+      <font>
+         <Font name="Consolas Bold" size="18.0" />
+      </font></Label>
+   <Label fx:id="post_zap" prefHeight="34.0" prefWidth="466.0" />
+   <Label prefHeight="22.0" prefWidth="63.0" text="Answer" textFill="#7c0791">
+      <font>
+         <Font name="Consolas Bold" size="18.0" />
+      </font></Label>
+   <Label fx:id="result_l" prefHeight="32.0" prefWidth="471.0" />
+    <Button defaultButton="true" onAction="#onButtonClick" prefHeight="85.0" prefWidth="133.0" text="Solve!" textFill="#c513e4">
+      <font>
+         <Font name="Consolas Bold" size="20.0" />
+      </font></Button>
+</VBox>
