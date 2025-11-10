@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="418.0" prefWidth="408.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.students_table.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <ComboBox fx:id="sortBox" prefWidth="150.0" />
+   <TableView fx:id="table" prefHeight="268.0" prefWidth="368.0">
+     <columns>
+       <TableColumn fx:id="colNum" prefWidth="75.20001411437988" text="ID" />
+       <TableColumn fx:id="colName" prefWidth="111.99999237060547" text="Name" />
+         <TableColumn fx:id="colGroup" prefWidth="89.39996337890625" text="Group" />
+         <TableColumn fx:id="colGrade" prefWidth="71.4000244140625" text="Grade" />
+     </columns>
+   </TableView>
+
+</VBox>
