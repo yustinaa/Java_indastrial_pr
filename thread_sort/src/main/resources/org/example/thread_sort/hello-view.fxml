@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.thread_sort.HelloController"
+      spacing="10">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Панель управления -->
+    <HBox spacing="20">
+        <Button fx:id="startBtn" text="Старт" prefWidth="120"/>
+
+        <VBox spacing="2">
+            <Label text="Пузырёк:"/>
+            <Label fx:id="start1" text="Старт: -"/>
+            <Label fx:id="end1" text="Конец: -"/>
+        </VBox>
+
+        <VBox spacing="2">
+            <Label text="Выбор:"/>
+            <Label fx:id="start2" text="Старт: -"/>
+            <Label fx:id="end2" text="Конец: -"/>
+        </VBox>
+
+        <VBox spacing="2">
+            <Label text="Вставки:"/>
+            <Label fx:id="start3" text="Старт: -"/>
+            <Label fx:id="end3" text="Конец: -"/>
+        </VBox>
+    </HBox>
+
+    <!-- Графики -->
+    <HBox spacing="10" prefHeight="400" prefWidth="900">
+        <BarChart fx:id="barChart1" HBox.hgrow="ALWAYS">
+            <xAxis>
+                <CategoryAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT"/>
+            </yAxis>
+        </BarChart>
+
+        <BarChart fx:id="barChart2" HBox.hgrow="ALWAYS">
+            <xAxis>
+                <CategoryAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT"/>
+            </yAxis>
+        </BarChart>
+
+        <BarChart fx:id="barChart3" HBox.hgrow="ALWAYS">
+            <xAxis>
+                <CategoryAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT"/>
+            </yAxis>
+        </BarChart>
+    </HBox>
+
+</VBox>
