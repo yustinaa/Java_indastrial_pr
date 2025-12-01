@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book id="1" copies="5" available="3">
+        <title>Java Programming</title>
+        <author>James Gosling</author>
+        <year>2020</year>
+        <price>49.99</price>
+        <category>programming</category>
+    </book>
+
+    <book id="2" copies="4" available="4">
+        <title>Design Patterns</title>
+        <author>Erich Gamma</author>
+        <year>1994</year>
+        <price>39.99</price>
+        <category>computer-science</category>
+    </book>
+
+    <book id="3" copies="6" available="6">
+        <title>Effective Java</title>
+        <author>Joshua Bloch</author>
+        <year>2018</year>
+        <price>45.00</price>
+        <category>programming</category>
+    </book>
+
+    <book id="4" copies="3" available="2">
+        <title>Java Concurrency in Practice</title>
+        <author>Brian Goetz</author>
+        <year>2006</year>
+        <price>55.00</price>
+        <category>programming</category>
+    </book>
+
+    <book id="5" copies="7" available="7">
+        <title>Clean Code</title>
+        <author>Robert Martin</author>
+        <year>2008</year>
+        <price>42.50</price>
+        <category>software-engineering</category>
+    </book>
+
+    <book id="6" copies="5" available="3">
+        <title>Clean Architecture</title>
+        <author>Robert Martin</author>
+        <year>2017</year>
+        <price>47.00</price>
+        <category>software-engineering</category>
+    </book>
+
+    <book id="7" copies="10" available="10">
+        <title>Refactoring</title>
+        <author>Martin Fowler</author>
+        <year>1999</year>
+        <price>50.00</price>
+        <category>software-engineering</category>
+    </book>
+
+    <book id="8" copies="4" available="1">
+        <title>UML Distilled</title>
+        <author>Martin Fowler</author>
+        <year>2003</year>
+        <price>33.99</price>
+        <category>software-engineering</category>
+    </book>
+
+    <book id="9" copies="6" available="6">
+        <title>Introduction to Algorithms</title>
+        <author>Thomas Cormen</author>
+        <year>2009</year>
+        <price>90.00</price>
+        <category>algorithms</category>
+    </book>
+
+    <book id="10" copies="5" available="4">
+        <title>The Pragmatic Programmer</title>
+        <author>Andrew Hunt</author>
+        <year>1999</year>
+        <price>45.00</price>
+        <category>programming</category>
+    </book>
+
+    <book id="11" copies="3" available="3">
+        <title>Artificial Intelligence: A Modern Approach</title>
+        <author>Stuart Russell</author>
+        <year>2020</year>
+        <price>120.00</price>
+        <category>ai</category>
+    </book>
+
+    <book id="12" copies="4" available="4">
+        <title>Deep Learning</title>
+        <author>Ian Goodfellow</author>
+        <year>2016</year>
+        <price>80.00</price>
+        <category>ai</category>
+    </book>
+
+    <book id="13" copies="8" available="7">
+        <title>Python Crash Course</title>
+        <author>Eric Matthes</author>
+        <year>2019</year>
+        <price>35.00</price>
+        <category>programming</category>
+    </book>
+
+    <book id="14" copies="6" available="6">
+        <title>Pro Git</title>
+        <author>Scott Chacon</author>
+        <year>2014</year>
+        <price>30.00</price>
+        <category>tools</category>
+    </book>
+
+    <book id="15" copies="5" available="5">
+        <title>Computer Networks</title>
+        <author>Andrew Tanenbaum</author>
+        <year>2011</year>
+        <price>55.00</price>
+        <category>networks</category>
+    </book>
+</library>

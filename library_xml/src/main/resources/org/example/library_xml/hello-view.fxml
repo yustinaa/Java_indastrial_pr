@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.library_xml.HelloController"
+      spacing="10">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Button text="Загрузить XML" onAction="#onLoadXml"/>
+    <Button text="Добавить книгу" onAction="#onAddBook"/>
+    <Button text="Найти книгу" onAction="#onSearch"/>
+    <Button text="Изменить цену" onAction="#onChangePrice"/>
+    <Button text="Выдать книгу" onAction="#onGiveBook"/>
+
+    <TableView fx:id="table">
+        <columns>
+            <TableColumn fx:id="colId" text="ID"/>
+            <TableColumn fx:id="colTitle" text="Название"/>
+            <TableColumn fx:id="colAuthor" text="Автор"/>
+            <TableColumn fx:id="colYear" text="Год"/>
+            <TableColumn fx:id="colPrice" text="Цена"/>
+            <TableColumn fx:id="colCategory" text="Категория"/>
+            <TableColumn fx:id="colCopies" text="Копий"/>
+            <TableColumn fx:id="colAvailable" text="Доступно"/>
+        </columns>
+    </TableView>
+
+</VBox>
