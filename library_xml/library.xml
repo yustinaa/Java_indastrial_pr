@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<library>
-    <book id="1" copies="5" available="3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><library>
+    <book available="0" copies="5" id="1">
         <title>Java Programming</title>
         <author>James Gosling</author>
         <year>2020</year>
@@ -8,7 +7,7 @@
         <category>programming</category>
     </book>
 
-    <book id="2" copies="4" available="4">
+    <book available="4" copies="4" id="2">
         <title>Design Patterns</title>
         <author>Erich Gamma</author>
         <year>1994</year>
@@ -16,7 +15,7 @@
         <category>computer-science</category>
     </book>
 
-    <book id="3" copies="6" available="6">
+    <book available="6" copies="6" id="3">
         <title>Effective Java</title>
         <author>Joshua Bloch</author>
         <year>2018</year>
@@ -24,7 +23,7 @@
         <category>programming</category>
     </book>
 
-    <book id="4" copies="3" available="2">
+    <book available="2" copies="3" id="4">
         <title>Java Concurrency in Practice</title>
         <author>Brian Goetz</author>
         <year>2006</year>
@@ -32,7 +31,7 @@
         <category>programming</category>
     </book>
 
-    <book id="5" copies="7" available="7">
+    <book available="7" copies="7" id="5">
         <title>Clean Code</title>
         <author>Robert Martin</author>
         <year>2008</year>
@@ -40,7 +39,7 @@
         <category>software-engineering</category>
     </book>
 
-    <book id="6" copies="5" available="3">
+    <book available="3" copies="5" id="6">
         <title>Clean Architecture</title>
         <author>Robert Martin</author>
         <year>2017</year>
@@ -48,7 +47,7 @@
         <category>software-engineering</category>
     </book>
 
-    <book id="7" copies="10" available="10">
+    <book available="10" copies="10" id="7">
         <title>Refactoring</title>
         <author>Martin Fowler</author>
         <year>1999</year>
@@ -56,7 +55,7 @@
         <category>software-engineering</category>
     </book>
 
-    <book id="8" copies="4" available="1">
+    <book available="1" copies="4" id="8">
         <title>UML Distilled</title>
         <author>Martin Fowler</author>
         <year>2003</year>
@@ -64,7 +63,7 @@
         <category>software-engineering</category>
     </book>
 
-    <book id="9" copies="6" available="6">
+    <book available="6" copies="6" id="9">
         <title>Introduction to Algorithms</title>
         <author>Thomas Cormen</author>
         <year>2009</year>
@@ -72,7 +71,7 @@
         <category>algorithms</category>
     </book>
 
-    <book id="10" copies="5" available="4">
+    <book available="4" copies="5" id="10">
         <title>The Pragmatic Programmer</title>
         <author>Andrew Hunt</author>
         <year>1999</year>
@@ -80,7 +79,7 @@
         <category>programming</category>
     </book>
 
-    <book id="11" copies="3" available="3">
+    <book available="3" copies="3" id="11">
         <title>Artificial Intelligence: A Modern Approach</title>
         <author>Stuart Russell</author>
         <year>2020</year>
@@ -88,7 +87,7 @@
         <category>ai</category>
     </book>
 
-    <book id="12" copies="4" available="4">
+    <book available="4" copies="4" id="12">
         <title>Deep Learning</title>
         <author>Ian Goodfellow</author>
         <year>2016</year>
@@ -96,7 +95,7 @@
         <category>ai</category>
     </book>
 
-    <book id="13" copies="8" available="7">
+    <book available="7" copies="8" id="13">
         <title>Python Crash Course</title>
         <author>Eric Matthes</author>
         <year>2019</year>
@@ -104,7 +103,7 @@
         <category>programming</category>
     </book>
 
-    <book id="14" copies="6" available="6">
+    <book available="6" copies="6" id="14">
         <title>Pro Git</title>
         <author>Scott Chacon</author>
         <year>2014</year>
@@ -112,11 +111,12 @@
         <category>tools</category>
     </book>
 
-    <book id="15" copies="5" available="5">
+    <book available="5" copies="5" id="15">
         <title>Computer Networks</title>
         <author>Andrew Tanenbaum</author>
         <year>2011</year>
-        <price>55.00</price>
+        <price>80.0</price>
         <category>networks</category>
     </book>
-</library>
+    <book available="2" copies="3" id="16"><title>gfd</title><author>gfds</author><year>2026</year><price>50.0</price><category>ai</category></book>
+<book available="2" copies="4" id="17"><title>hgfds</title><author>gfds</author><year>2019</year><price>45.0</price><category>ai</category></book><book available="0" copies="4" id="18"><title>jhgfdsdfg</title><author>ytre</author><year>2016</year><price>23.5</price><category>pr</category></book></library>

@@ -1,33 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.library_xml.HelloController"
-      spacing="10">
+<VBox spacing="15" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.library_xml.HelloController">
 
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
+        <Insets bottom="15" left="15" right="15" top="15" />
     </padding>
 
-    <Button text="Загрузить XML" onAction="#onLoadXml"/>
-    <Button text="Добавить книгу" onAction="#onAddBook"/>
-    <Button text="Найти книгу" onAction="#onSearch"/>
-    <Button text="Изменить цену" onAction="#onChangePrice"/>
-    <Button text="Выдать книгу" onAction="#onGiveBook"/>
+    <HBox spacing="10">
+        <Button fx:id="btnLoad" onAction="#onLoadXml" prefHeight="40" prefWidth="200" text="Загрузить XML" />
+        <Button fx:id="btnSearch" onAction="#onSearch" prefHeight="40" prefWidth="200" text="Найти книгу" />
+        <CheckBox fx:id="checkXsd" disable="true" text="XSD проверен" />
+    </HBox>
 
-    <TableView fx:id="table">
+    <HBox spacing="10">
+        <Button fx:id="btnAdd" onAction="#onAddBook" prefHeight="40" prefWidth="200" text="Добавить книгу" />
+        <Button fx:id="btnChangePrice" onAction="#onChangePrice" prefHeight="40" prefWidth="200" text="Изменить цену" />
+        <Button fx:id="btnGive" onAction="#onGiveBook" prefHeight="40" prefWidth="200" text="Выдать книгу" />
+    </HBox>
+
+    <TitledPane fx:id="addBookPane" expanded="false" text="Добавление новой книги">
+        <GridPane hgap="10" vgap="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+
+            <Label text="Название:" />
+            <TextField fx:id="tfTitle" GridPane.columnIndex="1" />
+
+            <Label text="Автор:" GridPane.rowIndex="1" />
+            <TextField fx:id="tfAuthor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Год:" GridPane.rowIndex="2" />
+            <TextField fx:id="tfYear" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Цена:" GridPane.rowIndex="3" />
+            <TextField fx:id="tfPrice" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Категория:" GridPane.rowIndex="4" />
+            <TextField fx:id="tfCategory" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Копий:" GridPane.rowIndex="5" />
+            <TextField fx:id="tfCopies" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label text="Доступно:" GridPane.rowIndex="6" />
+            <TextField fx:id="tfAvailable" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <Button onAction="#onConfirmAddBook" prefWidth="200" text="Сохранить книгу" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </TitledPane>
+
+    <TableView fx:id="table" prefHeight="400">
         <columns>
-            <TableColumn fx:id="colId" text="ID"/>
-            <TableColumn fx:id="colTitle" text="Название"/>
-            <TableColumn fx:id="colAuthor" text="Автор"/>
-            <TableColumn fx:id="colYear" text="Год"/>
-            <TableColumn fx:id="colPrice" text="Цена"/>
-            <TableColumn fx:id="colCategory" text="Категория"/>
-            <TableColumn fx:id="colCopies" text="Копий"/>
-            <TableColumn fx:id="colAvailable" text="Доступно"/>
+            <TableColumn fx:id="colId" prefWidth="52.99999541044235" text="ID" />
+            <TableColumn fx:id="colTitle" prefWidth="120.80002212524414" text="Название" />
+            <TableColumn fx:id="colAuthor" prefWidth="86.39999389648438" text="Автор" />
+            <TableColumn fx:id="colYear" prefWidth="61.0" text="Год" />
+            <TableColumn fx:id="colPrice" text="Цена" />
+            <TableColumn fx:id="colCategory" text="Категория" />
+            <TableColumn fx:id="colCopies" text="Копий" />
+            <TableColumn fx:id="colAvailable" text="Доступно" />
         </columns>
     </TableView>
 

@@ -3,12 +3,9 @@ package org.example.library_xml;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.*;
-
-import java.util.List;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.collections.ObservableList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +22,19 @@ public class HelloController {
     @FXML private TableColumn<Book, Integer> colCopies;
     @FXML private TableColumn<Book, Integer> colAvailable;
 
+    @FXML private TitledPane addBookPane;
+
+    @FXML private TextField tfTitle;
+    @FXML private TextField tfAuthor;
+    @FXML private TextField tfYear;
+    @FXML private TextField tfPrice;
+    @FXML private TextField tfCategory;
+    @FXML private TextField tfCopies;
+    @FXML private TextField tfAvailable;
+
+    @FXML private CheckBox checkXsd;
+
+    private ObservableList<Book> books = FXCollections.observableArrayList();
 
     private XMLManager xml = new XMLManager();
 
@@ -39,107 +49,171 @@ public class HelloController {
         colCopies.setCellValueFactory(new PropertyValueFactory<>("copies"));
         colAvailable.setCellValueFactory(new PropertyValueFactory<>("available"));
 
-
+        table.setItems(books);
     }
 
     @FXML
-    protected void onLoadXml() {
-        if (xml.loadXML()) {
-            table.setItems(FXCollections.observableArrayList(xml.getBooks()));
+    private void onLoadXml() {
+        List<Book> loadedBooks = xml.loadXML();
+
+        books.clear();
+        books.addAll(loadedBooks);
+
+        boolean isValid = xml.isXmlValid();
+        checkXsd.setSelected(isValid);
+
+        if (loadedBooks.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Ошибка", "Не удалось загрузить XML-файл!");
+        } else if (!isValid) {
+            showAlert(Alert.AlertType.WARNING, "Внимание", "XML-файл загружен, но не прошел XSD-валидацию!");
         } else {
-            showAlert("Ошибка", "Не удалось загрузить XML или он не проходит XSD!");
+            showAlert(Alert.AlertType.INFORMATION, "Успех", "XML-файл успешно загружен и прошел XSD-валидацию.");
         }
     }
 
     @FXML
     protected void onAddBook() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Добавить книгу");
-        dialog.setHeaderText("Введите данные книги через запятую: title,author,year,price,category,copies,available");
-        Optional<String> res = dialog.showAndWait();
-        res.ifPresent(input -> {
-            try {
-                String[] parts = input.split(",");
-                Book b = new Book(
-                        xml.getBooks().size() + 1,
-                        Integer.parseInt(parts[5].trim()),
-                        Integer.parseInt(parts[6].trim()),
-                        parts[0].trim(),
-                        parts[1].trim(),
-                        Integer.parseInt(parts[2].trim()),
-                        Double.parseDouble(parts[3].trim()),
-                        parts[4].trim()
-                );
-                xml.addBook(b);
-                table.setItems(FXCollections.observableArrayList(xml.getBooks()));
-            } catch (Exception e) {
-                showAlert("Ошибка", "Неверный формат ввода!");
-            }
-        });
+        addBookPane.setExpanded(!addBookPane.isExpanded());
+        if(addBookPane.isExpanded()){
+            clearForm();
+        }
     }
 
     @FXML
+    private void onConfirmAddBook() {
+        try {
+            if (tfTitle.getText().isEmpty() || tfAuthor.getText().isEmpty() ||
+                    tfYear.getText().isEmpty() || tfPrice.getText().isEmpty() ||
+                    tfCategory.getText().isEmpty() || tfCopies.getText().isEmpty() ||
+                    tfAvailable.getText().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Ошибка ввода", "Все поля должны быть заполнены!");
+                return;
+            }
+
+            int newId = xml.getNewBookId();
+
+            Book b = new Book(
+                    newId,
+                    Integer.parseInt(tfCopies.getText()),
+                    Integer.parseInt(tfAvailable.getText()),
+                    tfTitle.getText(),
+                    tfAuthor.getText(),
+                    Integer.parseInt(tfYear.getText()),
+                    Double.parseDouble(tfPrice.getText()),
+                    tfCategory.getText()
+            );
+
+            xml.addBook(b);
+            books.add(b);   //добавл в ObservableList (для обновления таблицы)
+
+            addBookPane.setExpanded(false);
+            clearForm();
+            showAlert(Alert.AlertType.INFORMATION, "Успех", "Книга успешно добавлена!");
+
+        } catch (NumberFormatException ex) {
+            showAlert(Alert.AlertType.ERROR, "Ошибка ввода", "Поля Год, Цена, Копии и Доступно должны быть числами.");
+        } catch (Exception ex) {
+            showAlert(Alert.AlertType.ERROR, "Ошибка", "Произошла ошибка при добавлении книги: " + ex.getMessage());
+        }
+    }
+
+
+    @FXML
     protected void onChangePrice() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Изменить цену");
-        dialog.setHeaderText("Введите ID книги и новую цену через запятую: id,newPrice");
+        TextInputDialog dialog = createTextInputDialog("Изменить цену", "Введите ID книги и новую цену через запятую: id,newPrice");
         Optional<String> res = dialog.showAndWait();
         res.ifPresent(input -> {
             try {
                 String[] parts = input.split(",");
+                if (parts.length != 2) throw new IllegalArgumentException("Неверный формат");
+
                 int id = Integer.parseInt(parts[0].trim());
                 double price = Double.parseDouble(parts[1].trim());
+
                 xml.changePrice(id, price);
-                table.setItems(FXCollections.observableArrayList(xml.getBooks()));
+                updateBookList(); // обновл ObservableList
+
             } catch (Exception e) {
-                showAlert("Ошибка", "Неверный формат ввода!");
+                showAlert(Alert.AlertType.ERROR, "Ошибка", "Неверный формат ввода (ожидаются: id,цена)!");
             }
         });
     }
 
     @FXML
     protected void onGiveBook() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Выдать книгу");
-        dialog.setHeaderText("Введите ID книги для выдачи:");
+        TextInputDialog dialog = createTextInputDialog("Выдать книгу", "Введите ID книги для выдачи:");
         Optional<String> res = dialog.showAndWait();
         res.ifPresent(input -> {
             try {
                 int id = Integer.parseInt(input.trim());
                 xml.giveBook(id);
-                table.setItems(FXCollections.observableArrayList(xml.getBooks()));
+                updateBookList();
+            } catch (NumberFormatException e) {
+                showAlert(Alert.AlertType.ERROR, "Ошибка", "Неверный формат ввода (ожидается числовой ID)!");
             } catch (Exception e) {
-                showAlert("Ошибка", "Неверный формат ввода!");
+
             }
         });
     }
 
     @FXML
     protected void onSearch() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Поиск книги");
-        dialog.setHeaderText("Введите автор, год, категория через запятую (оставьте пустым, если не фильтруем):");
+        TextInputDialog dialog = createTextInputDialog("Поиск книги", "Введите автор, год, категория через запятую:");
         Optional<String> res = dialog.showAndWait();
         res.ifPresent(input -> {
             try {
-                String[] parts = input.split(",");
-                String author = parts.length > 0 ? parts[0].trim() : "";
-                Integer year = parts.length > 1 && !parts[1].trim().isEmpty() ? Integer.parseInt(parts[1].trim()) : null;
-                String category = parts.length > 2 ? parts[2].trim() : "";
+                String[] parts = (input + ",,").split(",", 3);
+
+                String author = parts[0].trim().isEmpty() ? null : parts[0].trim();
+                Integer year = parts[1].trim().isEmpty() ? null : Integer.parseInt(parts[1].trim());
+                String category = parts[2].trim().isEmpty() ? null : parts[2].trim();
 
                 List<Book> result = xml.searchBooks(author, year, category);
-                table.setItems(FXCollections.observableArrayList(result));
+
+                books.clear();
+                books.addAll(result);
+
+                showAlert(Alert.AlertType.INFORMATION, "Поиск завершен", "Найдено книг: " + result.size());
+
+            } catch (NumberFormatException e) {
+                showAlert(Alert.AlertType.ERROR, "Ошибка", "Год должен быть числом!");
             } catch (Exception e) {
-                showAlert("Ошибка", "Неверный формат ввода!");
+                showAlert(Alert.AlertType.ERROR, "Ошибка", "Неверный формат ввода!");
             }
         });
     }
 
-    private void showAlert(String title, String text) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
+    private void updateBookList() {
+        books.clear();
+        try {
+            books.addAll(xml.getBooksXPath());
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Ошибка обновления", "Не удалось обновить список книг.");
+        }
+    }
+
+    private void clearForm() {
+        tfTitle.clear();
+        tfAuthor.clear();
+        tfYear.clear();
+        tfPrice.clear();
+        tfCategory.clear();
+        tfCopies.clear();
+        tfAvailable.clear();
+    }
+
+    private TextInputDialog createTextInputDialog(String title, String header) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle(title);
+        dialog.setHeaderText(header);
+        return dialog;
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String text) {
+        Alert a = new Alert(type);
         a.setTitle(title);
+        a.setHeaderText(null);
         a.setContentText(text);
         a.showAndWait();
     }
 }
-

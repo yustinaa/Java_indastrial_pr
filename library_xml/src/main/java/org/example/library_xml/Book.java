@@ -31,4 +31,6 @@ public class Book {
     public int getYear() { return year; }
     public double getPrice() { return price; }
     public String getCategory() { return category; }
+    public void setPrice(double price) { this.price = price; }
+    public void setAvailable(int available) { this.available = available; }
 }
