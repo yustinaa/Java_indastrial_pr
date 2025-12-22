@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Библиотека</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f4f4; color: #333; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+    </style>
+</head>
+<body>
+
+<h1>📚 Список книг</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Год</th>
+        <th>Цена</th>
+        <th>Категория</th>
+        <th>Копий</th>
+        <th>Доступно</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}">1</td>
+        <td th:text="${book.title}">Название книги</td>
+        <td th:text="${book.author}">Автор</td>
+        <td th:text="${book.year}">2024</td>
+        <td th:text="${book.price}">500.0</td>
+        <td th:text="${book.category}">Жанр</td>
+        <td th:text="${book.copies}">10</td>
+        <td th:text="${book.available}">5</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

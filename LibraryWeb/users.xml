@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+                            
+    
+    
+    
+    
+    
+    <user>
+                                                        
+        
+        
+        
+        
+        
+        <username>yustinamart</username>
+                                                        
+        
+        
+        
+        
+        
+        <password>1234</password>
+                                                        
+        
+        
+        
+        
+        
+        <role>READER</role>
+                                
+        
+        
+        <borrowedBooks>
+                                                
+            
+            
+            <bookId>2</bookId>
+                                                
+            
+            
+            <bookId>5</bookId>
+                                            
+        
+        
+        </borrowedBooks>
+                                                    
+    
+    
+    
+    
+    
+    </user>
+                        
+    
+    
+    
+    
+    
+    <user>
+                                                
+        
+        
+        
+        
+        <username>yuuu</username>
+                                                
+        
+        
+        
+        
+        <password>1234</password>
+                                                
+        
+        
+        
+        
+        <role>READER</role>
+                                
+        
+        
+        <borrowedBooks>
+                                                
+            
+            
+            <bookId>3</bookId>
+                                                
+            
+            
+            <bookId>6</bookId>
+                                            
+        
+            
+            <bookId>2</bookId>
+                    
+        </borrowedBooks>
+                                            
+    
+    
+    
+    
+    </user>
+                    
+    
+    
+    
+    
+    <user>
+                                        
+        
+        
+        
+        <username>yu1</username>
+                                        
+        
+        
+        
+        <password>123</password>
+                                        
+        
+        
+        
+        <role>READER</role>
+                                
+        
+        
+        <borrowedBooks>
+                                                
+            
+            
+            <bookId>4</bookId>
+                                                
+            
+            
+            <bookId>7</bookId>
+                                            
+        
+        
+        </borrowedBooks>
+                                    
+    
+    
+    
+    </user>
+                
+    
+    
+    
+    <user>
+                                
+        
+        
+        <username>yus</username>
+                                
+        
+        
+        <password>123</password>
+                                
+        
+        
+        <role>READER</role>
+                                
+        
+        
+        <borrowedBooks>
+                                                
+            
+            
+            <bookId>5</bookId>
+                                                
+            
+            
+            <bookId>8</bookId>
+                                            
+        
+        
+            <bookId>3</bookId>
+        </borrowedBooks>
+                            
+    
+    
+    </user>
+            
+    
+    
+    <user>
+                        
+        
+        <username>librar1</username>
+                        
+        
+        <password>111</password>
+                        
+        
+        <role>LIBRARIAN</role>
+                    
+    
+    </user>
+        
+
+</users>

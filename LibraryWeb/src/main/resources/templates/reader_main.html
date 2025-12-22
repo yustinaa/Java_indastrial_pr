@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Кабинет Читателя</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 30px; background-color: #f8f9fa; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        h1 { color: #2c3e50; }
+        .search-section { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #eee; padding: 12px; text-align: left; }
+        th { background-color: #2c3e50; color: white; }
+        .nav-links { margin-bottom: 20px; }
+        .nav-links a { margin-right: 15px; text-decoration: none; color: #1a73e8; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📖 Электронный каталог (Читатель)</h1>
+
+    <div class="nav-links">
+        <a href="/reader">Каталог</a>
+        <a href="/reader/my-account">Мой аккаунт</a>
+    </div>
+
+    <div class="search-section">
+        <form action="/reader/search" method="get">
+            <input type="text" name="author" placeholder="Поиск по автору">
+            <input type="number" name="year" placeholder="Год издания">
+            <input type="text" name="category" placeholder="Категория">
+            <button type="submit" style="padding: 5px 15px;">Найти книги</button>
+            <a href="/reader" style="font-size: 0.8em; margin-left: 10px;">Сбросить</a>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Год</th>
+            <th>Категория</th>
+            <th>Наличие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.year}"></td>
+            <td th:text="${book.category}"></td>
+            <td>
+                <span th:if="${book.available > 0}" style="color: green;">Есть в наличии</span>
+                <span th:unless="${book.available > 0}" style="color: red;">Выдана</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

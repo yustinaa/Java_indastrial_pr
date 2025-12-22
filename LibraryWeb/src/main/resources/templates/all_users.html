@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список читателей</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        .user-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        h2 { color: #1a73e8; }
+    </style>
+</head>
+<body>
+<h1>👥 Список читателей и их аккаунты</h1>
+<div th:each="entry : ${userBooksMap}" class="user-card">
+    <h2 th:text="${entry.key}">Имя читателя</h2>
+    <p>Книги на руках:</p>
+    <ul>
+        <li th:each="book : ${entry.value}" th:text="${book.title + ' (' + book.author + ')'}"></li>
+    </ul>
+    <div th:if="${#lists.isEmpty(entry.value)}">Книг нет.</div>
+</div>
+<a href="/librarian">назад</a>
+</body>
+</html>
